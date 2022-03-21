@@ -15,6 +15,8 @@ function searchPlace() {
   input.style.opacity = "1";
   button.style.visibility = "visible";
   button.style.opacity = "1";
+  placeName.style.visibility = "hidden";
+
 }
 //getting current location through systems location
 window.addEventListener("load", () => {
@@ -70,6 +72,8 @@ button.addEventListener("click", function () {
   input.style.opacity = "0";
   button.style.visibility = "hidden";
   button.style.opacity = "0";
+  placeName.style.visibility = "visible";
+
 });
 /***********************************/
 
