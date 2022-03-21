@@ -16,7 +16,6 @@ function searchPlace() {
   button.style.visibility = "visible";
   button.style.opacity = "1";
   placeName.style.visibility = "hidden";
-
 }
 //getting current location through systems location
 window.addEventListener("load", () => {
@@ -56,24 +55,32 @@ let weather = {
     // const { icon, description } = data.weather[0];
     // const { temp, humidity } = data.main;
     // console.log(icon, description);
-    placeName.innerHTML = data.name;
-    sunnyImg.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-    sunnyText.innerHTML = data.weather[0].main;
-    precipitation.innerHTML = `${data.main.humidity}%`;
-    tempText.innerHTML = Math.floor(data.main.temp - 273.15);
+
+    if (data.name !== undefined) {
+      placeName.innerHTML = data.name;
+      sunnyImg.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+      sunnyText.innerHTML = data.weather[0].main;
+      precipitation.innerHTML = `${data.main.humidity}%`;
+      tempText.innerHTML = Math.floor(data.main.temp - 273.15);
+    } else {
+      alert("Either Location not Found or invalid ❗");
+    }
   },
   search: function () {
     this.fetchWeather(inputText.value);
   },
 };
 button.addEventListener("click", function () {
-  weather.search();
-  input.style.visibility = "hidden";
-  input.style.opacity = "0";
-  button.style.visibility = "hidden";
-  button.style.opacity = "0";
-  placeName.style.visibility = "visible";
-
+  if (inputText.value !== "") {
+    weather.search();
+    input.style.visibility = "hidden";
+    input.style.opacity = "0";
+    button.style.visibility = "hidden";
+    button.style.opacity = "0";
+    placeName.style.visibility = "visible";
+  } else {
+    alert("Location feild is Empty.❌");
+  }
 });
 /***********************************/
 
@@ -88,17 +95,17 @@ monthDate.innerHTML = ` ${currentDate
 
 //day/night background and icons change
 // let morning = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-let night = [1, 2, 3, 19, 20, 21, 22, 23, 0];
-if (night.includes(currentDate.getHours())) {
-  container.style.background = "url('/weather-app/icons/night.jpg')";
-  container.style.transition = "all ease 1s";
-  container.style.backgroundRepeat = "no-repeat";
-  container.style.backgroundSize = "cover";
-  sunnyImg.src = "/weather-app/icons/moon-6677.svg";
-} else {
-  container.style.background = "url('/weather-app/icons/day.jpg')";
-  container.style.transition = "all ease 1s";
-  sunnyImg.src = "/weather-app/icons/sun-8759.svg";
-  container.style.backgroundRepeat = "no-repeat";
-  container.style.backgroundSize = "cover";
-}
+// let night = [1, 2, 3, 19, 20, 21, 22, 23, 0];
+// if (night.includes(currentDate.getHours())) {
+//   container.style.background = "url('/weather-app/icons/night.jpg')";
+//   container.style.transition = "all ease 1s";
+//   container.style.backgroundRepeat = "no-repeat";
+//   container.style.backgroundSize = "cover";
+//   sunnyImg.src = "/weather-app/icons/moon-6677.svg";
+// } else {
+//   container.style.background = "url('/weather-app/icons/day.jpg')";
+//   container.style.transition = "all ease 1s";
+//   sunnyImg.src = "/weather-app/icons/sun-8759.svg";
+//   container.style.backgroundRepeat = "no-repeat";
+//   container.style.backgroundSize = "cover";
+// }
