@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather-App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hurricane&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <div class="container" id="contain">
+      <div id="input">
+        <input id="input-text" placeholder="Search" type="text" />
+        <button id="btn" type="submit"></button>
+      </div>
+      <div class="place-name">
+        <img
+          onclick="searchPlace()"
+          src="/weather-app/icons/pin-48.svg"
+          alt=""
+        />
+        <h3 id="placename">-----</h3>
+      </div>
+      <div class="date"><span id="day"></span><span id="month"></span></div>
+      <div class="icon-temp">
+        <div class="icon-sunny-percent">
+          <div class="icon">
+            <img id="sun" src="" alt="" />
+          </div>
+          <div class="sunny">
+            <h3 id="sun-text">-</h3>
+          </div>
+          <div class="percent">
+            <div>
+              <img src="/weather-app/icons/water-975.svg" alt="" />
+              <span id="preci">--%</span>
+            </div>
+          </div>
+        </div>
+        <div class="temp">
+          <h1 id="temp-text">--</h1>
+          <span>°C</span>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

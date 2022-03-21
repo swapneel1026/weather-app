@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(138, 136, 136);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html {
+  font-size: 10px;
+}
+.container {
+  width: 38rem;
+  height: 60rem;
+  background-image: url(/weather-app/icons/day.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1rem;
+  transition: none;
+}
+.place-name {
+  /* border: 1px solid blueviolet; */
+  display: flex;
+  color: #fff;
+  font-size: 3rem;
+  font-family: "Hurricane", cursive;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  position: relative;
+  /* top: 2rem; */
+}
+.place-name > img {
+  height: 1.8rem;
+  width: 1.8rem;
+  position: relative;
+  right: 1rem;
+  /* top: 0.4rem; */
+  cursor: pointer;
+}
+.container > .date {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  position: relative;
+  /* top: 2rem; */
+}
+.icon > img {
+  height: 5rem;
+  width: 5rem;
+}
+
+.icon-temp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+  position: relative;
+  top: 2rem;
+  height: 10rem;
+  width: 100%;
+}
+.icon-sunny-percent {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 3rem;
+  width: 10rem;
+}
+.icon {
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sunny {
+  /* border: 1px solid blue; */
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: "Dancing Script", cursive;
+}
+.percent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+.percent > div > span {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: "Dancing Script", cursive;
+}
+.percent > div > img {
+  height: 1.2rem;
+  width: 1.2rem;
+  position: relative;
+  top: 0.09rem;
+}
+
+.temp {
+  /* border: 1px solid blue; */
+  width: 10rem;
+  height: 100%;
+  position: relative;
+  right: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.temp > h1 {
+  font-size: 6rem;
+  color: #fff;
+  font-family: "Libre Baskerville", serif;
+}
+.temp > span {
+  font-size: 2.5rem;
+  color: #fff;
+  position: relative;
+  bottom: 1rem;
+  left: 0.8rem;
+  font-family: "Libre Baskerville", serif;
+}
+#input {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 3.5rem;
+  z-index: 100;
+  position: relative;
+  top: 4rem;
+  border-radius: 0.5rem;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#input > input {
+  text-align: center;
+  font-size: 1.8rem;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem 0rem 0 0.5rem;
+  height: 100%;
+  outline: none;
+  /* visibility: hidden;
+  opacity: 0; */
+}
+#input > button {
+  background-image: url(/weather-app/icons/loupe.png);
+  height: 3.5rem;
+  width: 3.5rem;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center;
+  border: none;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
