@@ -16,9 +16,10 @@ html {
 .container {
   width: 38rem;
   height: 60rem;
-  background-image: url("/weather-app/icons/jc-gellidon-Khqmo4T-rs0-unsplash.jpg");
+  background-image: url("");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   border-radius: 1rem;
   transition: none;
 }
@@ -32,6 +33,7 @@ html {
   align-items: center;
   font-weight: 100;
   position: relative;
+  cursor: pointer;
   /* top: 2rem; */
 }
 .place-name > img {
@@ -40,7 +42,7 @@ html {
   position: relative;
   right: 1rem;
   /* top: 0.4rem; */
-  cursor: pointer;
+  cursor: grabbing;
 }
 .container > .date {
   display: flex;
@@ -150,7 +152,7 @@ html {
   background-color: rgb(255, 255, 255);
   border-radius: 0.5rem 0rem 0 0.5rem;
   height: 100%;
-  width:  60%;
+  /* width: 60%; */
   outline: none;
   /* visibility: hidden;
   opacity: 0; */
@@ -166,4 +168,44 @@ html {
   visibility: hidden;
   opacity: 0;
   border-radius: 0 0.5rem 0.5rem 0;
+}
+.display-forecast-flex {
+  width: 90%;
+  height: 20rem;
+  /* border: 1px solid red; */
+  background: linear-gradient(to right, grey, rgb(177, 172, 172));
+  opacity: 70%;
+  border-radius: 2rem;
+  position: relative;
+  top: 10rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  visibility: hidden;
+}
+.display-forecast {
+  width: 6rem;
+  height: 10rem;
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+.date-forecast {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 800;
+}
+
+.display-forecast > img {
+  height: 5rem;
+  width: 5rem;
+}
+.temperature-forecast {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 800;
 }
