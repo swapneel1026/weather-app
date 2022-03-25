@@ -16,6 +16,43 @@ function searchPlace() {
   button.style.visibility = "visible";
   button.style.opacity = "1";
   placeName.style.visibility = "hidden";
+  inputText.value = "";
+}
+function fetchCurrentLocation() {
+  let lat;
+  let lon;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      lon = position.coords.longitude;
+      lat = position.coords.latitude;
+      const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=0e80c221352779280c0f3748f6a8d389`;
+      fetch(api)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          placeName.innerHTML = data.name;
+          sunnyImg.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+          sunnyText.innerHTML = data.weather[0].main;
+          precipitation.innerHTML = `${data.main.humidity}%`;
+          tempText.innerHTML = Math.floor(data.main.temp - 273.15);
+          if (data.weather[0].main === "Haze") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+          } else if (data.weather[0].main === "Clear") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+          } else if (data.weather[0].main === "Clouds") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
+          } else if (data.weather[1].main === "Rain") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+          }
+        });
+    });
+    getRequest(placeName.innerHTML);
+  }
 }
 //getting current location through systems location
 window.addEventListener("load", () => {
@@ -36,6 +73,19 @@ window.addEventListener("load", () => {
           sunnyText.innerHTML = data.weather[0].main;
           precipitation.innerHTML = `${data.main.humidity}%`;
           tempText.innerHTML = Math.floor(data.main.temp - 273.15);
+          if (data.weather[0].main === "Haze") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+          } else if (data.weather[0].main === "Clear") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+          } else if (data.weather[0].main === "Clouds") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
+          } else if (data.weather[1].main === "Rain") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+          }
         });
     });
   }
@@ -51,10 +101,11 @@ let weather = {
       .then((data) => this.displayWeather(data));
   },
   displayWeather: function (data) {
-    // const { name } = data;
-    // const { icon, description } = data.weather[0];
-    // const { temp, humidity } = data.main;
-    // console.log(icon, description);
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, humidity } = data.main;
+    // console.log(name, icon, description, temp, humidity);
+    console.log(data);
 
     if (data.name !== undefined) {
       placeName.innerHTML = data.name;
@@ -62,12 +113,26 @@ let weather = {
       sunnyText.innerHTML = data.weather[0].main;
       precipitation.innerHTML = `${data.main.humidity}%`;
       tempText.innerHTML = Math.floor(data.main.temp - 273.15);
+      if (data.weather[0].main === "Haze") {
+        container.style.backgroundImage =
+          "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+      } else if (data.weather[0].main === "Clear") {
+        container.style.backgroundImage =
+          "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+      } else if (data.weather[0].main === "Clouds") {
+        container.style.backgroundImage =
+          "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
+      } else if (data.weather[1].main === "Rain") {
+        container.style.backgroundImage =
+          "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+      }
     } else {
       alert("Either Location not Found or invalid ❗");
     }
   },
   search: function () {
     this.fetchWeather(inputText.value);
+    getRequest(inputText.value);
   },
 };
 button.addEventListener("click", function () {
@@ -83,6 +148,56 @@ button.addEventListener("click", function () {
   }
 });
 /***********************************/
+
+async function getRequest(city) {
+  let APIkey = "0e80c221352779280c0f3748f6a8d389";
+
+  console.log(city);
+
+  let response = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}`
+  );
+  parsedResponse = await response.json();
+  console.log(parsedResponse);
+  let cityResponse = [];
+  cityResponse = parsedResponse.list;
+  // let displayForecast = document.querySelector(".display-forecast");
+  let displayForecastFlex = document.querySelector(".display-forecast-flex");
+  displayForecastFlex.innerHTML = "";
+  for (let i = 0; i < cityResponse.length; i += 7) {
+    let dateForecast = document.createElement("div");
+    dateForecast.setAttribute("class", "date-forecast");
+    let iconForecast = document.createElement("img");
+    iconForecast.setAttribute("class", "icon-forecast");
+    let temperatureForecast = document.createElement("div");
+    temperatureForecast.setAttribute("class", "temperature-forecast");
+    let displayForecast = document.createElement("div");
+    displayForecast.setAttribute("class", "display-forecast");
+
+    dateForecast.innerHTML = `${cityResponse[i].dt_txt.substring(
+      8,
+      10
+    )}/${cityResponse[i].dt_txt.substring(5, 7)}`;
+    document.querySelector(".display-forecast-flex").style.visibility =
+      "visible";
+
+    // console.log(month);
+
+    iconForecast.src = `http://openweathermap.org/img/wn/${cityResponse[i].weather[0].icon}.png`;
+    temperatureForecast.innerHTML = `${Math.floor(
+      cityResponse[i].main.temp - 274.15
+    )}°C`;
+
+    displayForecast.append(dateForecast);
+    displayForecast.append(iconForecast);
+    displayForecast.append(temperatureForecast);
+    displayForecastFlex.append(displayForecast);
+    // console.log(cityResponse[i].main.temp);
+    // console.log(cityResponse[i].dt_txt);
+    // console.log(cityResponse[i].weather[0].icon);
+    // console.log(cityResponse.length);
+  }
+}
 
 // date function
 const currentDate = new Date();
