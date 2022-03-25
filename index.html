@@ -28,11 +28,11 @@
       </div>
       <div class="place-name">
         <img
-          onclick="searchPlace()"
           src="/weather-app/icons/pin-48.svg"
+          onclick="fetchCurrentLocation()"
           alt=""
         />
-        <h3 id="placename">-----</h3>
+        <h3 id="placename" onclick="searchPlace()"></h3>
       </div>
       <div class="date"><span id="day"></span><span id="month"></span></div>
       <div class="icon-temp">
@@ -55,6 +55,7 @@
           <span>°C</span>
         </div>
       </div>
+      <div class="display-forecast-flex"></div>
     </div>
     <script src="script.js"></script>
   </body>
