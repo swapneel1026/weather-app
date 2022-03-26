@@ -24,7 +24,6 @@ html {
   transition: none;
 }
 .place-name {
-  /* border: 1px solid blueviolet; */
   display: flex;
   color: #fff;
   font-size: 3rem;
@@ -34,14 +33,12 @@ html {
   font-weight: 100;
   position: relative;
   cursor: pointer;
-  /* top: 2rem; */
 }
 .place-name > img {
   height: 1.8rem;
   width: 1.8rem;
   position: relative;
   right: 1rem;
-  /* top: 0.4rem; */
   cursor: grabbing;
 }
 .container > .date {
@@ -50,7 +47,6 @@ html {
   color: #fff;
   font-size: 1.5rem;
   position: relative;
-  /* top: 2rem; */
 }
 .icon > img {
   height: 5rem;
@@ -61,14 +57,12 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
   position: relative;
   top: 2rem;
   height: 10rem;
   width: 100%;
 }
 .icon-sunny-percent {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -76,13 +70,11 @@ html {
   width: 10rem;
 }
 .icon {
-  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .sunny {
-  /* border: 1px solid blue; */
   font-size: 2.5rem;
   display: flex;
   justify-content: center;
@@ -94,7 +86,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid blue; */
 }
 .percent > div > span {
   font-size: 1.5rem;
@@ -109,7 +100,6 @@ html {
 }
 
 .temp {
-  /* border: 1px solid blue; */
   width: 10rem;
   height: 100%;
   position: relative;
@@ -132,7 +122,6 @@ html {
   font-family: "Libre Baskerville", serif;
 }
 #input {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -152,10 +141,7 @@ html {
   background-color: rgb(255, 255, 255);
   border-radius: 0.5rem 0rem 0 0.5rem;
   height: 100%;
-  /* width: 60%; */
   outline: none;
-  /* visibility: hidden;
-  opacity: 0; */
 }
 #input > button {
   background-image: url(/weather-app/icons/loupe.png);
@@ -172,27 +158,24 @@ html {
 .display-forecast-flex {
   width: 90%;
   height: 20rem;
-  /* border: 1px solid red; */
-  background: linear-gradient(to right, grey, rgb(177, 172, 172));
-  opacity: 70%;
+  opacity: 75%;
   border-radius: 2rem;
   position: relative;
   top: 10rem;
   left: 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   visibility: hidden;
 }
 .display-forecast {
   width: 6rem;
   height: 10rem;
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid blue; */
+  position: relative;
 }
 .date-forecast {
   font-size: 1.5rem;
@@ -208,4 +191,18 @@ html {
   font-size: 1.5rem;
   color: white;
   font-weight: 800;
+}
+.forecast-h1 {
+  position: relative;
+  font-size: 2.3rem;
+  border-radius: 1rem;
+  height: 3rem;
+  width: 16rem;
+  text-align: center;
+  top: 9rem;
+  left: 3rem;
+  z-index: 100;
+  visibility: hidden;
+
+  color: #fff;
 }
