@@ -39,15 +39,27 @@ function fetchCurrentLocation() {
           if (data.weather[0].main === "Haze") {
             container.style.backgroundImage =
               "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "black";
           } else if (data.weather[0].main === "Clear") {
             container.style.backgroundImage =
               "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(53,146,213)";
           } else if (data.weather[0].main === "Clouds") {
             container.style.backgroundImage =
               "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
-          } else if (data.weather[1].main === "Rain") {
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(167, 166, 166)";
+          } else if (data.weather[0].main === "Rain") {
             container.style.backgroundImage =
               "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(21,21,21)";
           }
         });
     });
@@ -69,6 +81,7 @@ window.addEventListener("load", () => {
         })
         .then((data) => {
           placeName.innerHTML = data.name;
+          getRequest(placeName.innerHTML);
           sunnyImg.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
           sunnyText.innerHTML = data.weather[0].main;
           precipitation.innerHTML = `${data.main.humidity}%`;
@@ -76,15 +89,27 @@ window.addEventListener("load", () => {
           if (data.weather[0].main === "Haze") {
             container.style.backgroundImage =
               "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "black";
           } else if (data.weather[0].main === "Clear") {
             container.style.backgroundImage =
               "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(53,146,213)";
           } else if (data.weather[0].main === "Clouds") {
             container.style.backgroundImage =
               "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
-          } else if (data.weather[1].main === "Rain") {
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(167, 166, 166)";
+          } else if (data.weather[0].main === "Rain") {
             container.style.backgroundImage =
               "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(21,21,21)";
           }
         });
     });
@@ -104,8 +129,6 @@ let weather = {
     const { name } = data;
     const { icon, description } = data.weather[0];
     const { temp, humidity } = data.main;
-    // console.log(name, icon, description, temp, humidity);
-    console.log(data);
 
     if (data.name !== undefined) {
       placeName.innerHTML = data.name;
@@ -116,15 +139,23 @@ let weather = {
       if (data.weather[0].main === "Haze") {
         container.style.backgroundImage =
           "url('/weather-app/icons/istockphoto-1341515382-170667a (1).jpg')";
+        document.querySelector(".display-forecast-flex").style.backgroundColor =
+          "black";
       } else if (data.weather[0].main === "Clear") {
         container.style.backgroundImage =
           "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
+        document.querySelector(".display-forecast-flex").style.backgroundColor =
+          "rgb(53,146,213)";
       } else if (data.weather[0].main === "Clouds") {
         container.style.backgroundImage =
           "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
-      } else if (data.weather[1].main === "Rain") {
+        document.querySelector(".display-forecast-flex").style.backgroundColor =
+          "rgb(167, 166, 166)";
+      } else if (data.weather[0].main === "Rain") {
         container.style.backgroundImage =
           "url('/weather-app/icons/photo-1534274988757-a28bf1a57c17.avif')";
+        document.querySelector(".display-forecast-flex").style.backgroundColor =
+          "rgb(21,21,21)";
       }
     } else {
       alert("Either Location not Found or invalid ❗");
@@ -161,7 +192,7 @@ async function getRequest(city) {
   console.log(parsedResponse);
   let cityResponse = [];
   cityResponse = parsedResponse.list;
-  // let displayForecast = document.querySelector(".display-forecast");
+  console.log(cityResponse);
   let displayForecastFlex = document.querySelector(".display-forecast-flex");
   displayForecastFlex.innerHTML = "";
   for (let i = 0; i < cityResponse.length; i += 7) {
@@ -180,8 +211,7 @@ async function getRequest(city) {
     )}/${cityResponse[i].dt_txt.substring(5, 7)}`;
     document.querySelector(".display-forecast-flex").style.visibility =
       "visible";
-
-    // console.log(month);
+    document.querySelector(".forecast-h1").style.visibility = "visible";
 
     iconForecast.src = `http://openweathermap.org/img/wn/${cityResponse[i].weather[0].icon}.png`;
     temperatureForecast.innerHTML = `${Math.floor(
@@ -192,10 +222,6 @@ async function getRequest(city) {
     displayForecast.append(iconForecast);
     displayForecast.append(temperatureForecast);
     displayForecastFlex.append(displayForecast);
-    // console.log(cityResponse[i].main.temp);
-    // console.log(cityResponse[i].dt_txt);
-    // console.log(cityResponse[i].weather[0].icon);
-    // console.log(cityResponse.length);
   }
 }
 
@@ -207,20 +233,3 @@ day.innerHTML = `${currentDate.toLocaleString("en-US", { weekday: "long" })},`;
 monthDate.innerHTML = ` ${currentDate
   .toLocaleString("en-US", { month: "long" })
   .substring(0, 3)} ${currentDate.getDate()}  `;
-
-//day/night background and icons change
-// let morning = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-// let night = [1, 2, 3, 19, 20, 21, 22, 23, 0];
-// if (night.includes(currentDate.getHours())) {
-//   container.style.background = "url('/weather-app/icons/night.jpg')";
-//   container.style.transition = "all ease 1s";
-//   container.style.backgroundRepeat = "no-repeat";
-//   container.style.backgroundSize = "cover";
-//   sunnyImg.src = "/weather-app/icons/moon-6677.svg";
-// } else {
-//   container.style.background = "url('/weather-app/icons/day.jpg')";
-//   container.style.transition = "all ease 1s";
-//   sunnyImg.src = "/weather-app/icons/sun-8759.svg";
-//   container.style.backgroundRepeat = "no-repeat";
-//   container.style.backgroundSize = "cover";
-// }
