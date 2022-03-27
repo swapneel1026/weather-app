@@ -20,7 +20,7 @@ html {
   background-size: cover;
   background-position: center;
   border-radius: 1rem;
-  transition: all 0.4s ease-in;
+  transition: all 0.4s ease;
 }
 .place-name {
   display: flex;
