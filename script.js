@@ -10,13 +10,29 @@ let input = document.getElementById("input");
 let button = document.getElementById("btn");
 let inputText = document.getElementById("input-text");
 
+// closing the search box when clicked but not used.
+window.addEventListener("mouseup", function (event) {
+  if (event.target != inputText && event.target != button) {
+    input.style.visibility = "hidden";
+    inputText.style.visibility = "hidden";
+    input.style.opacity = "0";
+    inputText.style.opacity = "0";
+    button.style.visibility = "hidden";
+    button.style.opacity = "0";
+    placeName.style.visibility = "visible";
+  }
+});
+
 function searchPlace() {
   input.style.visibility = "visible";
+  inputText.style.visibility = "visible";
   input.style.opacity = "1";
+  inputText.style.opacity = "1";
   button.style.visibility = "visible";
   button.style.opacity = "1";
   placeName.style.visibility = "hidden";
   inputText.value = "";
+  inputText.focus();
 }
 function fetchCurrentLocation() {
   let lat;
@@ -170,7 +186,9 @@ button.addEventListener("click", function () {
   if (inputText.value !== "") {
     weather.search();
     input.style.visibility = "hidden";
+    inputText.style.visibility = "hidden";
     input.style.opacity = "0";
+    inputText.style.opacity = "0";
     button.style.visibility = "hidden";
     button.style.opacity = "0";
     placeName.style.visibility = "visible";
@@ -185,6 +203,8 @@ async function getRequest(city) {
 
   console.log(city);
 
+  //function for daily weather Forecast
+
   let response = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}`
   );
@@ -195,7 +215,7 @@ async function getRequest(city) {
   console.log(cityResponse);
   let displayForecastFlex = document.querySelector(".display-forecast-flex");
   displayForecastFlex.innerHTML = "";
-  for (let i = 0; i < cityResponse.length; i += 7) {
+  for (let i = 5; i < cityResponse.length; i += 8) {
     let dateForecast = document.createElement("div");
     dateForecast.setAttribute("class", "date-forecast");
     let iconForecast = document.createElement("img");
@@ -204,6 +224,8 @@ async function getRequest(city) {
     temperatureForecast.setAttribute("class", "temperature-forecast");
     let displayForecast = document.createElement("div");
     displayForecast.setAttribute("class", "display-forecast");
+    if (i === 0) {
+    }
 
     dateForecast.innerHTML = `${cityResponse[i].dt_txt.substring(
       8,
