@@ -224,8 +224,7 @@ async function getRequest(city) {
     temperatureForecast.setAttribute("class", "temperature-forecast");
     let displayForecast = document.createElement("div");
     displayForecast.setAttribute("class", "display-forecast");
-    if (i === 0) {
-    }
+    
 
     dateForecast.innerHTML = `${cityResponse[i].dt_txt.substring(
       8,
