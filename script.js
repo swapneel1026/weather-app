@@ -218,7 +218,6 @@ button.addEventListener("click", function () {
 async function getRequest(city) {
   let APIkey = "0e80c221352779280c0f3748f6a8d389";
 
-  console.log(city);
 
   //function for daily weather Forecast
 
@@ -226,10 +225,8 @@ async function getRequest(city) {
     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}`
   );
   parsedResponse = await response.json();
-  console.log(parsedResponse);
   let cityResponse = [];
   cityResponse = parsedResponse.list;
-  console.log(cityResponse);
   let displayForecastFlex = document.querySelector(".display-forecast-flex");
   displayForecastFlex.innerHTML = "";
   for (let i = 5; i < cityResponse.length; i += 8) {
