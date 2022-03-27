@@ -64,6 +64,12 @@ function fetchCurrentLocation() {
             document.querySelector(
               ".display-forecast-flex"
             ).style.backgroundColor = "rgb(53,146,213)";
+          } else if (data.weather[0].main === "Snow") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/daniele-levis-pelusi-4hckpE_jl18-unsplash.jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(31, 30, 30)";
           } else if (data.weather[0].main === "Clouds") {
             container.style.backgroundImage =
               "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
@@ -114,6 +120,12 @@ window.addEventListener("load", () => {
             document.querySelector(
               ".display-forecast-flex"
             ).style.backgroundColor = "rgb(53,146,213)";
+          } else if (data.weather[0].main === "Snow") {
+            container.style.backgroundImage =
+              "url('/weather-app/icons/daniele-levis-pelusi-4hckpE_jl18-unsplash.jpg')";
+            document.querySelector(
+              ".display-forecast-flex"
+            ).style.backgroundColor = "rgb(31, 30, 30)";
           } else if (data.weather[0].main === "Clouds") {
             container.style.backgroundImage =
               "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
@@ -162,6 +174,11 @@ let weather = {
           "url('/weather-app/icons/istockphoto-1126610893-170667a.jpg')";
         document.querySelector(".display-forecast-flex").style.backgroundColor =
           "rgb(53,146,213)";
+      } else if (data.weather[0].main === "Snow") {
+        container.style.backgroundImage =
+          "url('/weather-app/icons/daniele-levis-pelusi-4hckpE_jl18-unsplash.jpg')";
+        document.querySelector(".display-forecast-flex").style.backgroundColor =
+          "rgb(31, 30, 30)";
       } else if (data.weather[0].main === "Clouds") {
         container.style.backgroundImage =
           "url('/weather-app/icons/gorgeous-clouds-background-with-blue-sky-design_1017-25501.webp')";
