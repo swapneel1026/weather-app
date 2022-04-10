@@ -157,6 +157,7 @@ let weather = {
     const { name } = data;
     const { icon, description } = data.weather[0];
     const { temp, humidity } = data.main;
+    console.log(data.name);
 
     if (data.name !== undefined) {
       placeName.innerHTML = data.name;
